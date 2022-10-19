@@ -1,0 +1,46 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block title %}Scan Info{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right"></div>
+                <h1 class="page-title">Scan Info</h4>
+            </div>
+        </div>
+    </div>
+    <!-- start page title -->
+    <!-- end page title --> 
+    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>Country</th>
+                <th>Coords</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                
+                <td><h5>{{ device.ip }}</h5></td>
+                <td>{{ device.country }}</td>
+                <td>{{ device.coords }}</td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+    
+
+    
+</div> <!-- container -->
+<script>
+    $('#basic-datatable').DataTable();
+</script>
+{% endblock %}
+

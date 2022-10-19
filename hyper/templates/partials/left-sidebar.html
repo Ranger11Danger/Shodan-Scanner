@@ -1,0 +1,59 @@
+{% load static i18n %}
+<!-- ========== Left Sidebar Start ========== -->
+<div class="leftside-menu">
+    
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:info' %}" class="logo text-center logo-light">
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm.png' %}" alt="" height="16">
+        </span>
+    </a>
+
+    <!-- LOGO -->
+    <a href="{% url 'dashboard:info' %}" class="logo text-center logo-dark">
+        <span class="logo-lg">
+            <img src="{% static 'images/logo-dark.png' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'images/logo_sm_dark.png' %}" alt="" height="16">
+        </span>
+    </a>
+    
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+            <li class="side-nav-title side-nav-item">Navigation</li>
+            <li class="side-nav-item">
+                <a class="side-nav-link" href="/">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            
+            <li class="side-nav-item">
+                <a class="side-nav-link" href="/scan">
+                    <span>New Scan</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a class="side-nav-link" href="/upload">
+                    <span>Upload</span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a class="side-nav-link" href="/geo">
+                    <span>Geo</span>
+                </a>
+            </li>
+
+        </ul>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

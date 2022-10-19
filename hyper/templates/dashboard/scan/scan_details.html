@@ -1,0 +1,63 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+    {% if scan %}
+        <div class="row">
+            <div class="col-11">
+                {% if scan.0.name %}
+                    <h3>{{ scan.0.name }}</h3>
+                {% else %}
+                    <h3>{{ level }}</h3> 
+                {% endif %}
+                
+            </div>
+            {% if scan.0.name %}
+                <div class="col-1 mt-1">
+                    <a href="/scan/{{ slug }}/manage"><button class="btn btn-primary btn-rounded">Manage</button></a>
+                </div>               
+            {% endif %}
+            
+        </div>
+        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <thead>
+                <tr>
+                    <th>CVE</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Port</th>
+                    <th>Score</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in data %}
+                    <tr>
+                        <td>{{ x.cve }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.ip }}</td>
+                        <td>{{ x.port }}</td>
+                        <td>{{ x.score }}</td>
+                        {% load to_ip_format %}
+                        <td><a href="/addresses/{{ x.ip|to_ip_format }}/{{ x.cve }}" type="button" class="btn btn-primary btn-rounded">Details</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% else %}
+        <h1>Scan Not Found...</h1>
+    {% endif %}
+</div> 
+
+<script>
+    $('#basic-datatable').DataTable();
+</script>
+
+<!-- container -->
+{% endblock %}
+

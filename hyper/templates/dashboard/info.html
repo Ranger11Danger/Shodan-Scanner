@@ -1,0 +1,69 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right"></div>
+                <h1 class="page-title">Dashboard</h4>
+            </div>
+        </div>
+    </div>
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="row row-cols-1 row-cols-md-2 g-2">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card titlebox-one">
+                                <div class="card-body ">
+                                    <i class='mdi mdi-laptop-windows float-end' style="font-size: 35px;"></i>
+                                    <h4 class="text-uppercase card-title"> IP's Scanned</h4>
+                                    <h3>{{ ip_num }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>Coordninates</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in data %}
+                        <tr>
+                            <td>{{ x.ip }}</td>
+                            <td>{{ x.country }}</td>
+                            <td>{{ x.state }}</td>
+                            <td>{{ x.coords }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- end page title --> 
+</div>
+ <!-- container -->
+ <script>
+    $('#basic-datatable').DataTable();
+</script>
+{% endblock %}
+

@@ -1,0 +1,73 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+    {% if is_asset_group == True %}
+    <h1>Scan Asset Group</h1>
+    {% else %}
+    <h1> New Scan</h1>
+    {% endif %}
+    <div class="row">
+        <div class="col-4">
+            {% if is_asset_group is True %}
+                <form action="/assets/{{ groupid }}/scan" method="post">
+            {% else %}
+                <form action="/scan/" method="post">
+            {% endif %}
+            
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ scan_form }}
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary mt-1">
+            </form>
+        </div>
+    </div>
+    {% if scan_status %}
+        <h3>Scan will continue to run in the background and will update results over time</h3>
+        <h3>This could take some time...</h3>
+    {% endif %}
+</div> 
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script><!-- container -->
+<script>
+    let x = 1
+    setInterval(function(){
+        if(x === 1){
+            $("label[for$='id_custom_range']").hide()
+            document.getElementById('id_custom_range').style.display = 'none';
+            x = x +1;
+        }
+    },1);
+
+    $(document).ready(function() {
+        $('#id_asset_groups').selectize({});
+    });
+    document.getElementById('id_ports_2').onchange = function() {
+    document.getElementById('id_custom_range').disabled = false;
+    document.getElementById('id_custom_range').style.display = 'inline';
+    $("label[for$='id_custom_range']").show();
+    };
+    document.getElementById('id_ports_1').onchange = function() {
+    document.getElementById('id_custom_range').disabled = true;
+    document.getElementById('id_custom_range').value = '';
+    $("label[for$='id_custom_range']").hide();
+    document.getElementById('id_custom_range').style.display = 'none';
+    };
+    document.getElementById('id_ports_0').onchange = function() {
+    document.getElementById('id_custom_range').disabled = true;
+    document.getElementById('id_custom_range').value = '';
+    $("label[for$='id_custom_range']").hide();
+    document.getElementById('id_custom_range').style.display = 'none';
+
+    };
+    
+</script>
+{% endblock %}
+

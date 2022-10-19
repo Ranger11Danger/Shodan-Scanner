@@ -1,0 +1,46 @@
+{% extends "vertical_base.html" %}
+{% load static i18n %}
+
+{% block title %}Addresses{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right"></div>
+                <h1 class="page-title">Address Info</h4>
+            </div>
+        </div>
+    </div>
+    <!-- start page title -->
+    <!-- end page title --> 
+    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Details</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ip in ip_list %}
+            <tr>
+                <td>{{ ip.0 }}</td>
+                {% load to_ip_format %}
+                <td><a class="btn btn-primary" href="/addresses/{{ ip.1|to_ip_format }}">Details</a></td>
+                <td><a class="btn btn-primary" href="/download/address/{{ ip.1|to_ip_format }}">Download Report</a></td>
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+    
+
+    
+</div> <!-- container -->
+<script>
+    $('#basic-datatable').DataTable();
+</script>
+{% endblock %}
+
